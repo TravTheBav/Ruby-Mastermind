@@ -47,7 +47,6 @@ class Board
 
   # an indirect match occurs if an unmatched char in str is contained in code's unmatched chars
   def indirect_matches(str, code)
-    indirect_matches = 0
     unmatched_str_chars = []
     unmatched_code_chars = []
     str.each_char.with_index do |char, idx|
@@ -56,8 +55,7 @@ class Board
         unmatched_code_chars << code[idx]
       end
     end
-    unmatched_code_chars.sort.each_with_index { |char, idx| indirect_matches += 1 if char == unmatched_str_chars[idx] }
-    indirect_matches
+    unmatched_code_chars.intersection(unmatched_str_chars).length
   end
 
 end
