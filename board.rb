@@ -1,24 +1,25 @@
 class Board
-  @@colors = [:R, :G, :B, :Y] #red, green, blue, yellow
-  
+  # red, green, blue, yellow
+  @@colors = %i[R G B Y]
+
   def self.colors
     @@colors
   end
-  
+
   def initialize(length)
     @length = length
     @rows = Array.new(@length) { Array.new(4) }
     @current_row = 0
-  end 
+  end
 
   def render
     @rows.each do |row|
-        if row.none?
-            row.each { print '_' + ' ' }
-        else
-            row.each { |peg| print peg.to_s + ' ' }
-        end
-        puts
+      if row.none?
+        row.each { print '_ ' }
+      else
+        row.each { |peg| print "#{peg} " }
+      end
+      puts
     end
   end
 
@@ -57,5 +58,4 @@ class Board
     end
     unmatched_code_chars.intersection(unmatched_str_chars).length
   end
-
 end
