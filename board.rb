@@ -32,9 +32,32 @@ class Board
 
   def valid_code?(code)
     return false if code.length != 4
-    
+
     valid_chars = 'rgby'
     code.each_char { |char| return false unless valid_chars.include?(char.downcase) }
     true
   end
+
+  # a direct match occurs if a char in str matches a char in code at the same index
+  def direct_matches(str, code)
+    matches = 0
+    str.each_char.with_index { |char, idx| matches += 1 if char == code[idx] }
+    matches
+  end
+
+  # an indirect match occurs if an unmatched char in str is contained in code's unmatched chars
+  def indirect_matches(str, code)
+    indirect_matches = 0
+    unmatched_str_chars = []
+    unmatched_code_chars = []
+    str.each_char.with_index do |char, idx|
+      unless char == code[idx]
+        unmatched_str_chars << char
+        unmatched_code_chars << code[idx]
+      end
+    end
+    unmatched_code_chars.sort.each_with_index { |char, idx| indirect_matches += 1 if char == unmatched_str_chars[idx] }
+    indirect_matches
+  end
+
 end
