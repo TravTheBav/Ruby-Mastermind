@@ -1,14 +1,14 @@
 class HumanPlayer
   def initialize
-    @name = get_name
+    @name = name
   end
 
-  def get_name
+  def name
     puts 'Enter your name: '
     gets.chomp
   end
 
-  def get_input
+  def guess_code
     puts 'Enter a code with 4 colors and no spaces (e.g. "rgby")'
     puts 'Available colors are r (red), g (green), b (blue), and y (yellow): '
     gets.chomp
