@@ -5,12 +5,12 @@ class HumanPlayer
 
   def get_name
     puts 'Enter your name: '
-    input = gets.chomp
+    gets.chomp
   end
 
   def get_input
     puts 'Enter a code with 4 colors and no spaces (e.g. "rgby")'
     puts 'Available colors are r (red), g (green), b (blue), and y (yellow): '
-    input = gets.chomp
+    gets.chomp
   end
 end

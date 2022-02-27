@@ -24,7 +24,7 @@ class Board
   end
 
   def enter_code(current_row, code)
-    @rows[current_row] = code
+    @rows[current_row] = convert_to_symbols(code)
   end
 
   def increment_current_row
@@ -57,5 +57,10 @@ class Board
       end
     end
     unmatched_code_chars.intersection(unmatched_str_chars).length
+  end
+
+  # converts a string into an array of symbols
+  def convert_to_symbols(code)
+    code.split('').map { |char| char.upcase.to_sym }
   end
 end
