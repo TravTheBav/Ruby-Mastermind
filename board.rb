@@ -42,7 +42,7 @@ class Board
     true
   end
 
-  # a direct match occurs if a char in str matches a char in code at the same index
+  # a direct match occurs if a symbol in colors matches a symbol in code at the same index
   def direct_matches(colors, code)
     matches = 0
     colors.each_with_index { |color, idx| matches += 1 if color == code[idx] }
@@ -67,8 +67,8 @@ class Board
     code.split('').map { |char| char.upcase.to_sym }
   end
 
-  def update(guess_code)
-    guess_code = convert_to_symbols(guess_code)
+  def update(str)
+    guess_code = convert_to_symbols(str)
     enter_code(guess_code, @current_row)
     increment_current_row
     render
