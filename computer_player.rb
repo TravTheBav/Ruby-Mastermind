@@ -1,3 +1,6 @@
+# a class for a basic AI player
+# can currently generate a random color code from the board classes given colors array
+
 require_relative 'board'
 
 class ComputerPlayer

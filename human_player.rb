@@ -1,3 +1,6 @@
+# a human player class
+# instances of class have a name and can get input from the player
+
 class HumanPlayer
   def initialize
     @name = name

@@ -1,3 +1,6 @@
+# a class for managing the other mastermind classes (board and player classes)
+# responsible for initializing players and the board as well as running a gameplay loop
+
 require_relative 'board'
 require_relative 'human_player'
 require_relative 'computer_player'

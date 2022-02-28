@@ -1,3 +1,6 @@
+# a class representing the game board for mastermind
+# tracks filled and empty rows, updates/renders the game board, checks for valid codes, and calculates matches
+
 require 'colorize'
 
 class Board
