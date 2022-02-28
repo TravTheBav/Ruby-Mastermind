@@ -28,22 +28,23 @@ class Game
     puts 'Select a board length from 8 - 12: '
     length = gets.chomp
     until valid_board_length_str(length)
+      system('clear')
       puts 'Invalid length; enter a number between 8 and 12: '
       length = gets.chomp
     end
-    @board = Board.new(length.to_i)
+    @board = Board.new(length.to_i, @player_2.code)
+    system('clear')
   end
 
   def start_turn
     str = @player_1.guess_code
     until @board.valid_code?(str)
+      system('clear')
       puts 'Invalid code'
       str = @player_1.guess_code
     end
     system('clear')
     @board.update(str)
-    @board.render
-    @board.show_matches(str, @player_2.code)
   end
 
   def game_over?

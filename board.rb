@@ -8,10 +8,11 @@ class Board
     @@colors
   end
 
-  def initialize(length)
+  def initialize(length, answer_code)
     @length = length
     @rows = Array.new(@length) { Array.new(4) }
     @current_row = 0
+    @answer_code = answer_code
   end
 
   def render
@@ -26,7 +27,7 @@ class Board
   end
 
   def enter_code(code, current_row)
-    @rows[current_row] = convert_to_symbols(code)
+    @rows[current_row] = code
   end
 
   def increment_current_row
@@ -42,16 +43,14 @@ class Board
   end
 
   # a direct match occurs if a char in str matches a char in code at the same index
-  def direct_matches(str, code)
+  def direct_matches(colors, code)
     matches = 0
-    colors = convert_to_symbols(str)
     colors.each_with_index { |color, idx| matches += 1 if color == code[idx] }
     matches
   end
 
   # an indirect match occurs if an unmatched char in str is contained in code's unmatched chars
-  def indirect_matches(str, code)
-    colors = convert_to_symbols(str)
+  def indirect_matches(colors, code)
     unmatched_input_colors = []
     unmatched_code_colors = []
     colors.each_with_index do |color, idx|
@@ -68,14 +67,17 @@ class Board
     code.split('').map { |char| char.upcase.to_sym }
   end
 
-  def update(code)
-    enter_code(code, @current_row)
+  def update(guess_code)
+    guess_code = convert_to_symbols(guess_code)
+    enter_code(guess_code, @current_row)
     increment_current_row
+    render
+    show_matches(guess_code)
   end
 
-  def show_matches(str, code)
-    puts "Direct Matches: #{direct_matches(str, code)}"
-    puts "Indirect Matches: #{indirect_matches(str, code)}"
+  def show_matches(guess_code)
+    puts "Direct Matches: #{direct_matches(guess_code, @answer_code)}"
+    puts "Indirect Matches: #{indirect_matches(guess_code, @answer_code)}"
   end
 
   def full?
