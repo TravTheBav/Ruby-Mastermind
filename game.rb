@@ -14,7 +14,9 @@ class Game
     if @board.winner?(@player_2.code)
       puts 'You cracked the code'
     else
-      puts "You've been bamboozled; the code was #{@player_2.code}"
+      puts "You've been bamboozled; the code was: "
+      @player_2.code.each { |peg| print '  '.colorize(background: peg) + ' ' }
+      puts
     end
   end
 
