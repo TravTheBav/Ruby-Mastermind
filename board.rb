@@ -1,8 +1,10 @@
+require 'colorize'
+
 class Board
   attr_reader :length, :current_row
 
   # red, green, blue, yellow
-  @@colors = %i[R G B Y]
+  @@colors = %i[red blue green yellow]
 
   def self.colors
     @@colors
@@ -18,11 +20,11 @@ class Board
   def render
     @rows.each do |row|
       if row.none?
-        row.each { print '_ ' }
+        row.each { print '__ ' }
       else
-        row.each { |peg| print "#{peg} " }
+        row.each { |peg| print '  '.colorize(background: peg) + ' ' }
       end
-      puts
+      2.times { puts }
     end
   end
 
@@ -64,7 +66,18 @@ class Board
 
   # converts a string into an array of symbols
   def convert_to_symbols(code)
-    code.split('').map { |char| char.upcase.to_sym }
+    code.split('').map do |char|
+      case char.downcase
+      when 'r'
+        :red
+      when 'g'
+        :green
+      when 'b'
+        :blue
+      when 'y'
+        :yellow
+      end
+    end
   end
 
   def update(str)
@@ -81,7 +94,7 @@ class Board
   end
 
   def full?
-    current_row > length
+    current_row >= length
   end
 
   def winner?(code_to_match)
