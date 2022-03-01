@@ -2,11 +2,13 @@
 # responsible for initializing players and the board as well as running a gameplay loop
 
 require_relative 'board'
+require_relative 'code_validator'
 require_relative 'human_player'
 require_relative 'computer_player'
 
 class Game
   def initialize
+    @code_validator = CodeValidator.new
     @player_1 = HumanPlayer.new
     @player_2 = ComputerPlayer.new
   end
@@ -43,13 +45,14 @@ class Game
 
   def start_turn
     str = @player_1.guess_code
-    until @board.valid_code?(str)
+    until @code_validator.valid_code?(str)
       system('clear')
       puts 'Invalid code'
       str = @player_1.guess_code
     end
     system('clear')
-    @board.update(str)
+    guess_code = @code_validator.convert_to_symbols(str)
+    @board.update(guess_code)
   end
 
   def game_over?
