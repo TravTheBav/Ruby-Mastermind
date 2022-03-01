@@ -7,12 +7,11 @@ class ComputerPlayer
   attr_reader :code
 
   def initialize
-    @code = generate_code
+    @name = 'Ruby Mastermind'
   end
 
   def generate_code
-    code = []
-    4.times { code << Board.colors.sample }
-    code
+    @code = []
+    4.times { @code << Board.colors.sample }
   end
 end

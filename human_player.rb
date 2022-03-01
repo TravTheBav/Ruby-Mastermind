@@ -19,4 +19,8 @@ class HumanPlayer
     puts 'm (magenta), and w (white):'
     gets.chomp
   end
+
+  def generate_code
+    # To DO
+  end
 end

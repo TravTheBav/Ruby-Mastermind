@@ -8,12 +8,11 @@ require_relative 'computer_player'
 
 class Game
   def initialize
-    @code_validator = CodeValidator.new
-    @player_1 = HumanPlayer.new
-    @player_2 = ComputerPlayer.new
+    @code_validator = CodeValidator.new    
   end
 
   def play
+    setup_players
     setup_board
     start_turn until game_over?
     if @board.winner?(@player_2.code)
@@ -26,9 +25,28 @@ class Game
   end
 
   def setup_board
-    puts "Let's play Mastermind"
     @board = Board.new(12, @player_2.code)
-    system('clear')
+  end
+
+  def setup_players
+    puts "Let's play Mastermind"
+    option = select_roles until %w[1 2].include?(option)
+    case option
+    when '1'
+      @player_1 = HumanPlayer.new
+      @player_2 = ComputerPlayer.new
+    when '2'
+      @player_1 = ComputerPlayer.new
+      @player_2 = HumanPlayer.new
+    end
+    @player_2.generate_code
+  end
+
+  def select_roles
+    puts 'Would you like to be the code breaker or the code maker?'
+    puts 'Enter 1 to be the code breaker'
+    puts 'Enter 2 to be the code maker'
+    gets.chomp
   end
 
   def start_turn
