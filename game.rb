@@ -15,7 +15,7 @@ class Game
     setup_board
     start_turn until game_over?
     if @board.winner?(@player_2.code)
-      puts 'You cracked the code'
+      puts "#{@player_1.name} cracked the code"
     else
       puts "You've been bamboozled; the code was: "
       @player_2.code.each { |peg| print '  '.colorize(background: peg) + ' ' }

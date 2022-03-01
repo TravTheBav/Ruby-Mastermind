@@ -2,11 +2,13 @@
 # instances of class have a name and can get input from the player
 
 class HumanPlayer
+  attr_reader :name
+
   def initialize
-    @name = name
+    @name = input_name
   end
 
-  def name
+  def input_name
     puts 'Enter your name: '
     gets.chomp
   end
