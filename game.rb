@@ -1,5 +1,5 @@
-# a class for managing the other mastermind classes (board and player classes)
-# responsible for initializing players and the board as well as running a gameplay loop
+# a class for managing the other mastermind classes (board, code_validator, and player classes)
+# responsible for running the main gameplay loop
 
 require_relative 'board'
 require_relative 'code_validator'
@@ -25,21 +25,9 @@ class Game
     end
   end
 
-  def valid_board_length_str(str)
-    valid_input = %w[8 9 10 11 12]
-    valid_input.include?(str)
-  end
-
   def setup_board
     puts "Let's play Mastermind"
-    puts 'Select a board length from 8 - 12: '
-    length = gets.chomp
-    until valid_board_length_str(length)
-      system('clear')
-      puts 'Invalid length; enter a number between 8 and 12: '
-      length = gets.chomp
-    end
-    @board = Board.new(length.to_i, @player_2.code)
+    @board = Board.new(12, @player_2.code)
     system('clear')
   end
 
