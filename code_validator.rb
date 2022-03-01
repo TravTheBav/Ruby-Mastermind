@@ -4,7 +4,7 @@ class CodeValidator
   def valid_code?(code)
     return false unless code.length == 4
     
-    valid_chars = 'rgby'
+    valid_chars = 'rgbymw'
     code.each_char { |char| return false unless valid_chars.include?(char.downcase) }
     true
   end  
@@ -21,6 +21,10 @@ class CodeValidator
         :blue
       when 'y'
         :yellow
+      when 'm'
+        :magenta
+      when 'w'
+        :white
       end
     end
   end

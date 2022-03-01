@@ -7,7 +7,7 @@ class Board
   attr_reader :length, :current_row
 
   # red, green, blue, yellow
-  @@colors = %i[red blue green yellow]
+  @@colors = %i[red blue green yellow magenta white]
 
   def self.colors
     @@colors
@@ -34,7 +34,7 @@ class Board
     else
       row.each { |peg| print '  '.colorize(background: peg) + ' ' }
     end
-    print '   '    
+    print '   '
   end
 
   def render_clues(row)

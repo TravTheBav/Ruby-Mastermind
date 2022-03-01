@@ -15,7 +15,8 @@ class HumanPlayer
 
   def guess_code
     puts 'Enter a code with 4 colors and no spaces (e.g. "rgby")'
-    puts 'Available colors are r (red), g (green), b (blue), and y (yellow): '
+    puts 'Available colors are r (red), g (green), b (blue), y (yellow),'
+    puts 'm (magenta), and w (white):'
     gets.chomp
   end
 end
