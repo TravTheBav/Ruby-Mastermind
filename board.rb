@@ -22,13 +22,24 @@ class Board
 
   def render
     @rows.each do |row|
-      if row.none?
-        row.each { print '__ ' }
-      else
-        row.each { |peg| print '  '.colorize(background: peg) + ' ' }
-      end
+      render_row(row)
+      render_clues(row)
       2.times { puts }
     end
+  end
+
+  def render_row(row)
+    if row.none?
+      row.each { print '__ ' }
+    else
+      row.each { |peg| print '  '.colorize(background: peg) + ' ' }
+    end
+    print '   '    
+  end
+
+  def render_clues(row)
+    direct_matches(row, @answer_code).times { print '●'.colorize(:color => :red) + ' ' }
+    indirect_matches(row, @answer_code).times { print '●'.colorize(:color => :white) + ' ' }
   end
 
   def enter_code(code, current_row)
@@ -88,12 +99,6 @@ class Board
     enter_code(guess_code, @current_row)
     increment_current_row
     render
-    show_matches(guess_code)
-  end
-
-  def show_matches(guess_code)
-    puts "Direct Matches: #{direct_matches(guess_code, @answer_code)}"
-    puts "Indirect Matches: #{indirect_matches(guess_code, @answer_code)}"
   end
 
   def full?
