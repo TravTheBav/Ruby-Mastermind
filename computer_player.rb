@@ -1,7 +1,5 @@
 # a class for a basic AI player
-# can currently generate a random color code from the board classes given colors array
-
-require_relative 'board'
+# can either be a code maker or breaker
 
 class ComputerPlayer
   attr_reader :code
@@ -11,7 +9,8 @@ class ComputerPlayer
   end
 
   def generate_code
+    available_colors = %i[red blue green yellow magenta white]
     @code = []
-    4.times { @code << Board.colors.sample }
+    4.times { @code << available_colors.sample }
   end
 end

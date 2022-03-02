@@ -6,13 +6,6 @@ require 'colorize'
 class Board
   attr_reader :length, :current_row
 
-  # red, green, blue, yellow
-  @@colors = %i[red blue green yellow magenta white]
-
-  def self.colors
-    @@colors
-  end
-
   def initialize(length, answer_code)
     @length = length
     @rows = Array.new(@length) { Array.new(4) }
