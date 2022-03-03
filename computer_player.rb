@@ -1,5 +1,6 @@
 # a class for a basic AI player
 # can either be a code maker or breaker
+require 'pry-byebug'
 
 class ComputerPlayer
   attr_reader :name
@@ -27,11 +28,14 @@ class ComputerPlayer
 
     calculate_permutations if @permutations.empty?
 
-    @permutations.shuffle.pop.join
+    @permutations.shuffle!
+    @permutations.pop.join
   end
 
+  # returns all unique permutations of the directly matched colors
   def calculate_permutations
     @matched_colors.permutation { |perm| @permutations << perm }
+    @permutations.uniq!
   end
 
   def update_matched_colors(amount)

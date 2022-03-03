@@ -20,7 +20,7 @@ class Game
     if @board.winner?(@player_2.code)
       puts "#{@player_1.name} cracked the code"
     else
-      puts 'The Code Maker wins; the code was: '
+      puts "#{@player_2.name} wins; the code was: "
       @player_2.code.each { |peg| print '  '.colorize(background: peg) + ' ' }
       puts
     end
