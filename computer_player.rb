@@ -1,6 +1,5 @@
 # a class for a basic AI player
 # can either be a code maker or breaker
-require 'pry-byebug'
 
 class ComputerPlayer
   attr_reader :name

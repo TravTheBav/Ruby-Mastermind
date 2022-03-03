@@ -3,12 +3,12 @@
 class CodeValidator
   def valid_code?(code)
     return false unless code.length == 4
-    
+
     valid_chars = 'rgbymw'
     code.each_char { |char| return false unless valid_chars.include?(char.downcase) }
     true
-  end  
-  
+  end
+
   # converts a string into an array of symbols
   def convert_to_symbols(code)
     code.split('').map do |char|

@@ -8,7 +8,7 @@ require_relative 'computer_player'
 
 class Game
   def initialize
-    @code_validator = CodeValidator.new    
+    @code_validator = CodeValidator.new
   end
 
   def play
