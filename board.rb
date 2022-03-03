@@ -52,6 +52,7 @@ class Board
 
   # an indirect match occurs if an unmatched char in str is contained in code's unmatched chars
   def indirect_matches(colors, code)
+    matches = 0
     unmatched_input_colors = []
     unmatched_code_colors = []
     colors.each_with_index do |color, idx|
@@ -60,7 +61,13 @@ class Board
         unmatched_code_colors << code[idx]
       end
     end
-    unmatched_code_colors.intersection(unmatched_input_colors).length
+    unmatched_input_colors.each do |color|
+      if unmatched_code_colors.include?(color)
+        matches += 1
+        unmatched_code_colors.delete_at(unmatched_code_colors.index(color))
+      end
+    end
+    matches
   end
 
   def update(guess_code)
