@@ -27,4 +27,7 @@ class HumanPlayer
     puts 'm (magenta), and w (white):'
     @code = gets.chomp
   end
+
+  # does nothing; for duck typing purposes
+  def update_matched_colors(direct_matches) end
 end

@@ -5,7 +5,6 @@ require_relative 'board'
 require_relative 'code_validator'
 require_relative 'human_player'
 require_relative 'computer_player'
-require 'pry-byebug'
 
 class Game
   def initialize
@@ -66,6 +65,8 @@ class Game
     end
     system('clear')
     guess_code = @code_validator.convert_to_symbols(str)
+    direct_matches = @board.direct_matches(guess_code, @board.answer_code)
+    @player_1.update_matched_colors(direct_matches)
     @board.update(guess_code)
   end
 

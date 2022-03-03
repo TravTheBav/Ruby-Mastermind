@@ -4,7 +4,7 @@
 require 'colorize'
 
 class Board
-  attr_reader :length, :current_row
+  attr_reader :length, :current_row, :answer_code
 
   def initialize(length, answer_code)
     @length = length
