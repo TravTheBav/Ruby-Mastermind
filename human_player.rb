@@ -2,6 +2,7 @@
 # instances of class have a name and can get input from the player
 
 class HumanPlayer
+  attr_accessor :code
   attr_reader :name
 
   def initialize
@@ -24,6 +25,6 @@ class HumanPlayer
     puts 'Enter a secret code with 4 colors and no spaces (e.g. "rgby")'
     puts 'Available colors are r (red), g (green), b (blue), y (yellow),'
     puts 'm (magenta), and w (white):'
-    gets.chomp
+    @code = gets.chomp
   end
 end

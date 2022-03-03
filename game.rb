@@ -5,6 +5,7 @@ require_relative 'board'
 require_relative 'code_validator'
 require_relative 'human_player'
 require_relative 'computer_player'
+require 'pry-byebug'
 
 class Game
   def initialize
@@ -12,13 +13,15 @@ class Game
   end
 
   def play
+    puts "Let's play Mastermind"
     setup_players
+    setup_secret_code
     setup_board
     start_turn until game_over?
     if @board.winner?(@player_2.code)
       puts "#{@player_1.name} cracked the code"
     else
-      puts "You've been bamboozled; the code was: "
+      puts 'The Code Maker wins; the code was: '
       @player_2.code.each { |peg| print '  '.colorize(background: peg) + ' ' }
       puts
     end
@@ -29,7 +32,7 @@ class Game
   end
 
   def setup_players
-    puts "Let's play Mastermind"
+    option = select_roles
     option = select_roles until %w[1 2].include?(option)
     case option
     when '1'
@@ -39,7 +42,12 @@ class Game
       @player_1 = ComputerPlayer.new
       @player_2 = HumanPlayer.new
     end
+  end
+
+  def setup_secret_code
     @player_2.generate_code
+    @player_2.generate_code until @code_validator.valid_code?(@player_2.code)
+    @player_2.code = @code_validator.convert_to_symbols(@player_2.code)
   end
 
   def select_roles
